@@ -1,10 +1,18 @@
-import { defineConfig } from '@playwright/test'
+import { defineConfig, devices } from '@playwright/test'
 
 export default defineConfig({
   testDir: './testing/e2e',
+  outputDir: './test-results',
+  reporter: [
+    ['list'],
+    ['html', { outputFolder: 'test-results/html' }],
+    ['junit', { outputFile: 'test-results/junit.xml' }],
+  ],
   use: {
     baseURL: 'http://127.0.0.1:5173',
     headless: true,
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
   },
   webServer: {
     command: 'npm run dev -- --host 127.0.0.1 --port 5173',
