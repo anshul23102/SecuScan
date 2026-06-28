@@ -1,12 +1,11 @@
-import { defineConfig, devices } from '@playwright/test'
+import { defineConfig } from '@playwright/test'
 
 export default defineConfig({
   testDir: './testing/e2e',
-  outputDir: './test-results',
+  outputDir: './test-results/artifacts',
   reporter: [
     ['list'],
-    ['html', { outputFolder: 'test-results/html' }],
-    ['junit', { outputFile: 'test-results/junit.xml' }],
+    ['html', { outputFolder: 'test-results/html-report' }],
   ],
   use: {
     baseURL: 'http://127.0.0.1:5173',
