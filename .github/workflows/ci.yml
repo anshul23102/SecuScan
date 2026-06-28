@@ -26,28 +26,16 @@ jobs:
 
       - name: Run unit tests
         working-directory: frontend
-        run: npm run test -- --reporter=verbose --reporter=junit --outputFile=../../test-results-unit.xml --coverage --coverage.reporter=lcov
+        run: npm run test
 
       - name: Run E2E tests
         working-directory: frontend
         run: npm run e2e
 
-      - name: Upload unit test reports
+      - name: Upload test reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: unit-test-reports-node${{ matrix.node-version }}
-          path: |
-            frontend/coverage/
-            test-results-unit.xml
-          retention-days: 30
-
-      - name: Upload E2E test reports
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: e2e-test-reports-node${{ matrix.node-version }}
-          path: |
-            frontend/test-results/
-            frontend/blob-report/
+          name: test-reports-node${{ matrix.node-version }}
+          path: frontend/test-results/
           retention-days: 30

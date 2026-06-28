@@ -32,6 +32,12 @@ export default defineConfig(({ mode }) => {
         'testing/unit/**/*.spec.tsx',
       ],
       exclude: ['node_modules', 'dist', 'e2e/**', 'tests/e2e/**', 'testing/e2e/**'],
+      coverage: {
+        provider: 'v8',
+        reporter: ['text', 'lcov', 'html'],
+        include: ['src/**'],
+        exclude: ['src/**/*.d.ts', 'src/main.tsx'],
+      },
     },
   }
 })
